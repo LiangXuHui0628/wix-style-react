@@ -12,7 +12,7 @@ A collection of React components that conform to Wix Style.
 
 <div align="center">
 
-![](https://flat.badgen.net/badge/React/16.8.3/blue)
+![](https://flat.badgen.net/badge/React/16.13.1/blue)
 [![](https://badgen.net/npm/v/wix-style-react/latest)](https://www.npmjs.com/package/wix-style-react)
 [![Dependencies](https://img.shields.io/david/wix/wix-style-react.svg?style=flat-square)](https://david-dm.org/wix/wix-style-react)
 [![DevDependencies](https://img.shields.io/david/dev/ant-design/ant-design.svg?style=flat-square)](https://david-dm.org/wix/wix-style-react?type=dev)
@@ -57,17 +57,6 @@ Enable font smoothing with browser specific css properties:
   }
   ```
 
-Make sure that react and react-dom versions are not higher then:
-  ```html
-    //package.json
-   .
-   .
-   "react":"16.8.3",
-   "react-dom":"16.8.3"
-   .
-   .
-
-  ```
 ## Upgrade from older versions
 
 **Read and follow our migration guides:**
