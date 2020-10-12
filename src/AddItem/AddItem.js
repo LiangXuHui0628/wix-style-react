@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 
 import AddItemLarge from 'wix-ui-icons-common/system/AddItemLarge';
 import AddItemMedium from 'wix-ui-icons-common/system/AddItemMedium';
@@ -80,9 +81,22 @@ class AddItem extends Component {
     const { size, theme } = this.props;
 
     const image = theme === 'image';
-    const iconElement = ICONS[image ? 'custom' : size];
 
-    return iconElement;
+    return (
+      <ThemeProviderConsumerBackwardCompatible
+        defaultIcons={{
+          AddItemButton: {
+            tiny: ICONS.tiny,
+            small: ICONS.small,
+            medium: ICONS.medium,
+            large: ICONS.large,
+            custom: ICONS.custom,
+          },
+        }}
+      >
+        {({ icons }) => icons.AddItemButton[image ? 'custom' : size]}
+      </ThemeProviderConsumerBackwardCompatible>
+    );
   };
 
   _isChildStringWrapByBox = () => {
