@@ -1,0 +1,8 @@
+/* :import {
+  -st-from: "../../../Carousel/Carousel.scss";
+  -st-default: Carousel;
+}
+
+.root {
+  -st-extends: Carousel;
+}

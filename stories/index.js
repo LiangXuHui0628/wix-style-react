@@ -208,3 +208,6 @@ require('../src/MessageBox/docs');
 
 // Editor-X
 require('../src/Themes/editorX/docs');
+
+// BusinessDashboard
+require('../src/Themes/businessDashboard/docs');

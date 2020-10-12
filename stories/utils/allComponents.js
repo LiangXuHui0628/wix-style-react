@@ -2,6 +2,7 @@ import * as Icons from 'wix-ui-icons-common';
 import * as SystemIcons from 'wix-ui-icons-common/system';
 import * as wsr from '../../src/index';
 import * as editorX from '../../src/Themes/editorX';
+import * as businessDashboard from '../../src/Themes/businessDashboard';
 import * as floatingPanels from '../../src/Themes/floatingPanels';
 
 /*
@@ -24,4 +25,9 @@ export const floatingPanelsComponents = {
 export const editorXComponents = {
   ...defaultComponents,
   ...editorX,
+};
+
+export const businessDashboardComponents = {
+  ...defaultComponents,
+  ...businessDashboard,
 };

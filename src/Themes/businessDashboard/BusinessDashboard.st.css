@@ -1,0 +1,30 @@
+/* Components */
+:import {
+  -st-from: "../../Button/Button.st.css";
+  -st-default: Button;
+}
+
+:import {
+  -st-from: "../../CircularProgressBar/CircularProgressBar.st.css";
+  -st-default: CircularProgressBar;
+}
+
+/* Overrides */
+:import {
+  -st-from: "./components/Button.st.css";
+  -st-default: ButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/CircularProgressBar.st.css";
+  -st-default: CircularProgressBarOverrides;
+}
+
+@st-scope .root {
+  Button {
+    -st-mixin: ButtonOverrides();
+  }
+  CircularProgressBar {
+    -st-mixin: CircularProgressBarOverrides();
+  }
+}

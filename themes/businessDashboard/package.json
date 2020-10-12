@@ -1,0 +1,6 @@
+{
+  "name": "business-dashboard",
+  "main": "../../dist/src/Themes/businessDashboard/index.js",
+  "module": "../../dist/es/src/Themes/businessDashboard/index.js",
+  "typings": "../../dist/es/src/Themes/businessDashboard/index.d.ts"
+}
