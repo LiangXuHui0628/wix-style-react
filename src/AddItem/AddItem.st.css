@@ -96,12 +96,12 @@
   cursor: not-allowed;
   background-color: value(D10-05);
   color: value(D10-30);
-  border: dashed 1px value(D10-30);
+  border-color: value(D10-30);
 }
 
 .root:not(:disabled):focus-visible:theme(dashes) {
   box-shadow: 0 0 0 3px value(F00);
-  border: dashed 1px transparent;
+  border-color: transparent;
 }
 
 /* Theme filled */

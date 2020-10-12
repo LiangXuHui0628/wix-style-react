@@ -13,6 +13,7 @@ import Text from '../Text';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
 import { dataHooks } from './constants';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
+import { isString } from '../utils/StringUtils';
 
 import { st, classes } from './AddItem.st.css';
 
@@ -84,6 +85,17 @@ class AddItem extends Component {
     return iconElement;
   };
 
+  _isChildStringWrapByBox = () => {
+    const { children } = this.props;
+
+    const isBoxChild =
+      children && children.type && children.type.displayName === 'Box';
+    const isStringInnerChild =
+      children.props && isString(children.props.children);
+
+    return isBoxChild && isStringInnerChild;
+  };
+
   _renderText = () => {
     const { children, theme, size } = this.props;
 
@@ -95,16 +107,20 @@ class AddItem extends Component {
 
     return (
       <div className={st(classes.textWrapper, { size })}>
-        <Text
-          className={classes.textContent}
-          weight="thin"
-          skin="standard"
-          size={textSize}
-          dataHook={dataHooks.itemText}
-          ellipsis
-        >
-          {children}
-        </Text>
+        {isString(children) || this._isChildStringWrapByBox() ? (
+          <Text
+            className={classes.textContent}
+            weight="thin"
+            skin="standard"
+            size={textSize}
+            dataHook={dataHooks.itemText}
+            ellipsis
+          >
+            {children}
+          </Text>
+        ) : (
+          children
+        )}
       </div>
     );
   };

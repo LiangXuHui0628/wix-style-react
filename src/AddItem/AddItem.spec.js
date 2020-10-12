@@ -27,8 +27,7 @@ describe('AddItem', () => {
     describe('Props', () => {
       describe('`children` prop', () => {
         const text = 'Add New Item';
-        const node = <div>{text}</div>;
-        const nodeString = '<div>Add New Item</div>';
+        const node = <div data-hook="node-child">{text}</div>;
 
         it('should render [when] string is given', async () => {
           const { driver } = render(renderAddItem({ children: text }));
@@ -37,7 +36,11 @@ describe('AddItem', () => {
 
         it('should render [when] node is given', async () => {
           const { driver } = render(renderAddItem({ children: node }));
-          expect(await driver.getText()).toEqual(nodeString);
+          expect(
+            !!(await driver.element()).querySelector(
+              '[data-hook="node-child"]',
+            ),
+          ).toBe(true);
         });
 
         it('should not render children as string when theme is `image`', async () => {
