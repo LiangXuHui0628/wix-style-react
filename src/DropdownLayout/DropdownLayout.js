@@ -421,13 +421,13 @@ class DropdownLayout extends React.PureComponent {
 
   // For testing purposes only
   _getItemDataAttr = ({ hovered, selected, disabled }) => {
-    const { itemHeight, selectedHighlight } = this.props;
+    const { itemHeight } = this.props;
 
     return filterObject(
       {
         [DATA_OPTION.HOVERED]: hovered,
         [DATA_OPTION.DISABLED]: disabled,
-        [DATA_OPTION.SELECTED]: selected && selectedHighlight,
+        [DATA_OPTION.SELECTED]: selected,
         /* deprecated */
         [DATA_OPTION.SIZE]: itemHeight,
       },

@@ -101,65 +101,6 @@
   overflow: auto;
 }
 
-/*.option {*/
-/*  -st-states: overrideStyle;*/
-  /*-st-states: selected, hovered, disabled, itemHeight(enum(small, big)), overrideStyle;*/
-  /*-st-mixin: text-medium-normal;*/
-  /*color: value(D10);*/
-  /*line-height: 1.5;*/
-  /*overflow: hidden;*/
-  /*text-overflow: ellipsis;*/
-  /*text-align: left;*/
-  /*padding: 6px 20px 6px 24px;*/
-  /*cursor: pointer;*/
-  /*width: 100%;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-/*}*/
-
-/*.option:overrideStyle {*/
-/*  padding: 0;*/
-/*}*/
-
-/*.option:itemHeight(small):not(:overrideStyle) {*/
-/*  min-height: value(option_height);*/
-/*}*/
-
-/*.option:itemHeight(big):not(:overrideStyle) {*/
-/*  min-height: value(big_option_height);*/
-/*}*/
-
-/*.option:disabled {*/
-/*  color: value(D50);*/
-/*  cursor: default;*/
-/*}*/
-
-/*:global(.rtl) .option, :global([dir='rtl']) .option{*/
-/*  text-align: right;*/
-/*  direction: rtl;*/
-/*  padding-right: 24px;*/
-/*  padding-left: 24px;*/
-/*}*/
-
-/*.option:hovered {*/
-/*  background: value(THEME-COLOR-50);*/
-/*  color: value(D10);*/
-/*}*/
-
-/*.option:focus {*/
-/*  outline: none;*/
-/*}*/
-
-/*.option:selected {*/
-/*  background-color: value(THEME-COLOR-10);*/
-/*  color: value(D80);*/
-/*}*/
-
-/*.option:selected:hovered {*/
-/*  background-color: value(THEME-COLOR-20);*/
-/*  color: value(D80);*/
-/*}*/
-
 .arrow {
   position: absolute;
   left: 50%;
