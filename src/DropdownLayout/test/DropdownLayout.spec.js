@@ -159,34 +159,6 @@ describe('DropdownLayout', () => {
       expect(onSelect).toBeCalledWith(options[3], false);
     });
 
-    it('should allow using custom render functions as options', async () => {
-      const customRenderFunction = id => ({
-        value: jest.fn(),
-        id,
-      });
-
-      const options = [customRenderFunction(0), customRenderFunction(1)];
-
-      const onSelect = jest.fn();
-      const driver = createDriver(
-        <DropdownLayout visible options={options} onSelect={onSelect} />,
-      );
-
-      await driver.clickAtOption(0);
-
-      expect(options[0].value).toHaveBeenCalledWith({
-        selected: true,
-        disabled: undefined,
-        hovered: false,
-      });
-
-      expect(options[1].value).toHaveBeenCalledWith({
-        selected: false,
-        disabled: undefined,
-        hovered: false,
-      });
-    });
-
     describe('onSelect', () => {
       describe('with infiniteScroll', () => {
         it('should call onSelect with true value when clicking on a selected option if infinite scroll enabled', async () => {
@@ -309,39 +281,34 @@ describe('DropdownLayout', () => {
       });
     });
 
-    it('should render a function option with the rendered item props', async () => {
-      const selectedId = 0;
-      const unSelectedId = 1;
+    it('should allow using custom render functions as options with the option state', async () => {
+      const customRenderFunction = id => ({
+        value: jest.fn(),
+        id,
+      });
 
-      const optionsWithFuncValues = [
-        {
-          id: 0,
-          value: ({ selected }) => (
-            <div>option {selected ? 'selected' : 'not selected'}</div>
-          ),
-        },
-        {
-          id: 1,
-          value: ({ selected }) => (
-            <div>option {selected ? 'selected' : 'not selected'}</div>
-          ),
-        },
-      ];
+      const options = [customRenderFunction(0), customRenderFunction(1)];
 
+      const onSelect = jest.fn();
       const driver = createDriver(
-        <DropdownLayout
-          visible
-          options={optionsWithFuncValues}
-          selectedId={selectedId}
-        />,
+        <DropdownLayout visible options={options} onSelect={onSelect} />,
       );
 
-      expect(await driver.optionContentAt(selectedId)).toEqual(
-        'option selected',
-      );
-      expect(await driver.optionContentAt(unSelectedId)).toEqual(
-        'option not selected',
-      );
+      await driver.clickAtOption(0);
+
+      expect(onSelect).toHaveBeenCalled();
+
+      expect(options[0].value).toHaveBeenCalledWith({
+        selected: true,
+        disabled: undefined,
+        hovered: false,
+      });
+
+      expect(options[1].value).toHaveBeenCalledWith({
+        selected: false,
+        disabled: undefined,
+        hovered: false,
+      });
     });
 
     it('should select the chosen value', async () => {
