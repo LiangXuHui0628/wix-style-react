@@ -101,8 +101,8 @@
   overflow: auto;
 }
 
-.option {
-  -st-states: overrideStyle;
+/*.option {*/
+/*  -st-states: overrideStyle;*/
   /*-st-states: selected, hovered, disabled, itemHeight(enum(small, big)), overrideStyle;*/
   /*-st-mixin: text-medium-normal;*/
   /*color: value(D10);*/
@@ -115,11 +115,11 @@
   /*width: 100%;*/
   /*display: flex;*/
   /*align-items: center;*/
-}
+/*}*/
 
-.option:overrideStyle {
-  padding: 0;
-}
+/*.option:overrideStyle {*/
+/*  padding: 0;*/
+/*}*/
 
 /*.option:itemHeight(small):not(:overrideStyle) {*/
 /*  min-height: value(option_height);*/

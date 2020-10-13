@@ -182,10 +182,6 @@ const createOptionDriver = option => ({
   mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
   isHovered: () => option.hasAttribute(DATA_OPTION.HOVERED),
   isSelected: () => option.hasAttribute(DATA_OPTION.SELECTED),
-  isHoveredWithGlobalClassName: () =>
-    option.hasAttribute(DATA_OPTION.HOVERED_GLOBAL),
-  isSelectedWithGlobalClassName: () =>
-    option.hasAttribute(DATA_OPTION.SELECTED_GLOBAL),
   content: () => option.textContent,
   click: () => ReactTestUtils.Simulate.click(option),
   isDivider: () => {

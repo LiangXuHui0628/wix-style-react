@@ -246,10 +246,6 @@ const createOptionDriver = option => ({
   mouseLeave: () => ReactBase(option).mouseLeave(),
   isHovered: async () => !!(await option.attr(DATA_OPTION.HOVERED)),
   isSelected: async () => !!(await option.attr(DATA_OPTION.SELECTED)),
-  isHoveredWithGlobalClassName: async () =>
-    !!(await option.attr(DATA_OPTION.HOVERED_GLOBAL)),
-  isSelectedWithGlobalClassName: async () =>
-    !!(await option.attr(DATA_OPTION.SELECTED_GLOBAL)),
   content: () => option.text(),
   click: () => option.click(),
   isDivider: async () => {

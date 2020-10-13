@@ -420,18 +420,16 @@ class DropdownLayout extends React.PureComponent {
   }
 
   // For testing purposes only
-  _getItemDataAttr = ({ hovered, selected, disabled, overrideStyle }) => {
+  _getItemDataAttr = ({ hovered, selected, disabled }) => {
     const { itemHeight, selectedHighlight } = this.props;
 
     return filterObject(
       {
-        [DATA_OPTION.HOVERED]: hovered || false,
-        /* deprecated */
-        [DATA_OPTION.SIZE]: itemHeight,
+        [DATA_OPTION.HOVERED]: hovered,
         [DATA_OPTION.DISABLED]: disabled,
         [DATA_OPTION.SELECTED]: selected && selectedHighlight,
-        [DATA_OPTION.HOVERED_GLOBAL]: hovered && overrideStyle,
-        [DATA_OPTION.SELECTED_GLOBAL]: selected && overrideStyle,
+        /* deprecated */
+        [DATA_OPTION.SIZE]: itemHeight,
       },
       (key, value) => !!value,
     );
@@ -441,7 +439,7 @@ class DropdownLayout extends React.PureComponent {
     const { itemHeight, selectedHighlight } = this.props;
     const { selectedId, hovered } = this.state;
 
-    const { id, disabled, overrideStyle } = builderOption;
+    const { id, disabled } = builderOption;
 
     const optionState = {
       selected: id === selectedId,
@@ -451,12 +449,7 @@ class DropdownLayout extends React.PureComponent {
 
     return (
       <div
-        {...this._getItemDataAttr({ ...optionState, overrideStyle })}
-        className={st(classes.option, {
-          selected: optionState.selected && selectedHighlight,
-          itemHeight,
-          overrideStyle,
-        })}
+        {...this._getItemDataAttr({ ...optionState })}
         ref={node => this._setSelectedOptionNode(node, builderOption)}
         onClick={!disabled ? e => this._onSelect(idx, e) : null}
         key={idx}
