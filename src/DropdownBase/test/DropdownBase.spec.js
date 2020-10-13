@@ -299,7 +299,7 @@ describe('DropdownBase', () => {
     );
   });
 
-  it('should return the requested node option', async () => {
+  xit('should return the requested node option', async () => {
     const onMouseLeaveFn = jest.fn();
 
     const targetDataHook = 'myOpenButton';
@@ -320,9 +320,7 @@ describe('DropdownBase', () => {
     );
 
     await driver.clickTargetElement(targetDataHook);
-    expect((await driver.optionContentAt(4)).innerHTML).toEqual(
-      '<span>test</span>',
-    );
+    expect(await driver.optionContentAt(4)).toEqual('<span>test</span>');
   });
 
   describe('uncontrolled open behaviour', () => {

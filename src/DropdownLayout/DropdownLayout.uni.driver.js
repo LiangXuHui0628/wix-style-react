@@ -246,7 +246,14 @@ const createOptionDriver = option => ({
   mouseLeave: () => ReactBase(option).mouseLeave(),
   isHovered: async () => !!(await option.attr(DATA_OPTION.HOVERED)),
   isSelected: async () => !!(await option.attr(DATA_OPTION.SELECTED)),
-  content: () => option.text(),
+  content: async () => {
+    const selectableOption = listItemSelectDriverFactory(option);
+    if (await selectableOption.exists()) {
+      return selectableOption.getTitle();
+    }
+
+    return option.text();
+  },
   click: () => option.click(),
   isDivider: async () => {
     const divider = await findByHook(option, OPTION_DATA_HOOKS.DIVIDER);

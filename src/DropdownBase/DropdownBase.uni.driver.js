@@ -46,20 +46,7 @@ export const dropdownBaseDriverFactory = (base, body) => {
     optionContentAt: async id => {
       const dropdownLayoutDriver = await createDropdownLayoutDriver();
       const options = await dropdownLayoutDriver.options();
-
-      /*
-      Option content can be
-      1. node - <div>some text</div>
-      2. text - some text
-       */
-      const nodeContent = options[id].element().$$(':first-child');
-      const contentIsNode = (await nodeContent.count()) > 0;
-      if (contentIsNode) {
-        // eslint-disable-next-line no-restricted-properties
-        return await nodeContent.get(0).getNative();
-      } else {
-        return options[id].element().text();
-      }
+      return options[id].content();
     },
 
     mouseEnter: () => testkit(base, body).mouseEnter(),
