@@ -2,6 +2,8 @@ import * as React from 'react';
 import ThemeProvider from '..';
 import { theme } from '../../Themes/floatingPanels';
 import Close from 'wix-ui-icons-common/system/Close';
+import AddItemMedium from "wix-ui-icons-common/system/AddItemMedium";
+
 
 function themeProviderWithMandatoryProps() {
   return <ThemeProvider />;
@@ -21,7 +23,14 @@ function themeProviderWithAllProps() {
           },
           BaseModalLayout: {
             HeloButton: Close,
-          }
+          },
+          AddItemButton: {
+            tiny: AddItemMedium,
+            small: AddItemMedium,
+            medium: AddItemMedium,
+            large: AddItemMedium,
+            image: AddItemMedium,
+          },
         },
         color00: '#FF0000',
         color05: '#FF0000',
