@@ -12,19 +12,10 @@ import Add from 'wix-ui-icons-common/Add';
 import Tooltip from '../Tooltip';
 import Text from '../Text';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
-import { dataHooks } from './constants';
+import { dataHooks, SIZE } from './constants';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
-import { isString } from '../utils/StringUtils';
 
 import { st, classes } from './AddItem.st.css';
-
-const ICONS = {
-  large: <AddItemLarge />,
-  medium: <AddItemMedium />,
-  small: <AddItemSmall />,
-  tiny: <Add width="26" height="26" style={{ flexShrink: 0 }} />,
-  custom: <AddMedia width="31" height="31" />,
-};
 
 class AddItem extends Component {
   static displayName = 'AddItem';
@@ -77,24 +68,44 @@ class AddItem extends Component {
     removePadding: false,
   };
 
+  _renderAddItemIcon(Icon, size, isImageIcon) {
+    let AddItemIcon;
+
+    if (isImageIcon) {
+      AddItemIcon = <Icon width="31" height="31" />;
+    } else if (size === SIZE.tiny) {
+      AddItemIcon = <Icon width="26" height="26" style={{ flexShrink: 0 }} />;
+    } else {
+      AddItemIcon = <Icon />;
+    }
+
+    return AddItemIcon;
+  }
+
   _renderIcon = () => {
     const { size, theme } = this.props;
 
-    const image = theme === 'image';
+    const isImageIcon = theme === 'image';
 
     return (
       <ThemeProviderConsumerBackwardCompatible
         defaultIcons={{
           AddItemButton: {
-            tiny: ICONS.tiny,
-            small: ICONS.small,
-            medium: ICONS.medium,
-            large: ICONS.large,
-            custom: ICONS.custom,
+            tiny: Add,
+            small: AddItemSmall,
+            medium: AddItemMedium,
+            large: AddItemLarge,
+            image: AddMedia,
           },
         }}
       >
-        {({ icons }) => icons.AddItemButton[image ? 'custom' : size]}
+        {({ icons }) =>
+          this._renderAddItemIcon(
+            icons.AddItemButton[isImageIcon ? 'image' : size],
+            size,
+            isImageIcon,
+          )
+        }
       </ThemeProviderConsumerBackwardCompatible>
     );
   };
