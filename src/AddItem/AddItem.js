@@ -29,8 +29,8 @@ const ICONS = {
 class AddItem extends Component {
   static displayName = 'AddItem';
   static propTypes = {
-    /** any renderable node */
-    children: PropTypes.node,
+    /** any renderable node or a render function */
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
     /** apply disabled styles */
     disabled: PropTypes.bool,
@@ -99,17 +99,6 @@ class AddItem extends Component {
     );
   };
 
-  _isChildStringWrapByBox = () => {
-    const { children } = this.props;
-
-    const isBoxChild =
-      children && children.type && children.type.displayName === 'Box';
-    const isStringInnerChild =
-      children.props && isString(children.props.children);
-
-    return isBoxChild && isStringInnerChild;
-  };
-
   _renderText = () => {
     const { children, theme, size } = this.props;
 
@@ -121,7 +110,9 @@ class AddItem extends Component {
 
     return (
       <div className={st(classes.textWrapper, { size })}>
-        {isString(children) || this._isChildStringWrapByBox() ? (
+        {typeof children === 'function' ? (
+          children()
+        ) : (
           <Text
             className={classes.textContent}
             weight="thin"
@@ -132,8 +123,6 @@ class AddItem extends Component {
           >
             {children}
           </Text>
-        ) : (
-          children
         )}
       </div>
     );

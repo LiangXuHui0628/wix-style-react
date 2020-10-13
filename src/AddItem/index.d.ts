@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TooltipCommonProps } from '../common';
 
 export interface AddItemProps {
+  children?: React.ReactNode | Function;
   disabled?: boolean;
   theme?: AddItemTheme;
   alignItems?: AddItemAlignItems;

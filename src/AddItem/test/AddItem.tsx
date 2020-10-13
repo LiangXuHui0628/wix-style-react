@@ -25,6 +25,7 @@ function AddItemWithAllProps() {
       tooltipProps={{}}
       borderRadius="100%"
       className="test"
+      children={<div/>}
     />
   );
 }
