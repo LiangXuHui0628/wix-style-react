@@ -9,11 +9,14 @@ export const DATA_HOOKS = {
 export const OPTION_DATA_HOOKS = {
   TITLE: 'dropdown-title',
   DIVIDER: 'dropdown-divider',
+  SELECTABLE: 'option-selectable',
 };
 
 export const DATA_SHOWN = 'data-shown';
 
 export const DATA_DIRECTION = 'data-direction';
+
+export const DROPDOWN_LAYOUT_LOADER = 'dropdownLayout-loader';
 
 export const DATA_OPTION = {
   SIZE: 'data-option-size',

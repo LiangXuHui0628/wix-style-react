@@ -10,12 +10,14 @@ import {
   DATA_DIRECTION,
   DROPDOWN_LAYOUT_DIRECTIONS,
   OPTION_DATA_HOOKS,
+  DROPDOWN_LAYOUT_LOADER,
 } from './DataAttr';
 import { st, classes } from './DropdownLayout.st.css';
 import deprecationLog from '../utils/deprecationLog';
 import { filterObject } from '../utils/filterObject';
 import ReactDOM from 'react-dom';
 import { listItemSectionBuilder } from '../ListItemSection';
+import { listItemSelectBuilder } from '../ListItemSelect';
 import { isString } from '../utils/StringUtils';
 
 const MOUSE_EVENTS_SUPPORTED = ['mouseup', 'touchend'];
@@ -156,7 +158,8 @@ class DropdownLayout extends React.PureComponent {
   }
 
   _patchOptionToBuilder({ option, idx }) {
-    const { value, id, title: isTitle } = option;
+    const { value, id, title: isTitle, disabled } = option;
+    const { selectedId } = this.state;
 
     if (value === DIVIDER_OPTION_VALUE) {
       return listItemSectionBuilder({
@@ -175,6 +178,17 @@ class DropdownLayout extends React.PureComponent {
       });
     }
 
+    if (typeof value !== 'function') {
+      return listItemSelectBuilder({
+        dataHook: OPTION_DATA_HOOKS.SELECTABLE,
+        id,
+        title: value,
+        disabled,
+        selected: id === selectedId,
+      });
+    }
+
+    // in case it's a render function
     return option;
   }
 
@@ -238,9 +252,7 @@ class DropdownLayout extends React.PureComponent {
     }
   };
 
-  _onMouseLeave = () => {
-    this._markOption(NOT_HOVERED_INDEX);
-  };
+  _onMouseLeave = () => this._markOption(NOT_HOVERED_INDEX);
 
   _getMarkedIndex() {
     const { options } = this.props;
@@ -364,7 +376,7 @@ class DropdownLayout extends React.PureComponent {
       hasMore={this.props.hasMore}
       loader={
         <div className={classes.loader}>
-          <Loader dataHook={'dropdownLayout-loader'} size={'small'} />
+          <Loader dataHook={DROPDOWN_LAYOUT_LOADER} size="small" />
         </div>
       }
     >
@@ -413,11 +425,11 @@ class DropdownLayout extends React.PureComponent {
 
     return filterObject(
       {
-        [DATA_OPTION.HOVERED]: hovered && !overrideStyle,
+        [DATA_OPTION.HOVERED]: hovered || false,
         /* deprecated */
         [DATA_OPTION.SIZE]: itemHeight,
         [DATA_OPTION.DISABLED]: disabled,
-        [DATA_OPTION.SELECTED]: selected && !overrideStyle && selectedHighlight,
+        [DATA_OPTION.SELECTED]: selected && selectedHighlight,
         [DATA_OPTION.HOVERED_GLOBAL]: hovered && overrideStyle,
         [DATA_OPTION.SELECTED_GLOBAL]: selected && overrideStyle,
       },
@@ -441,7 +453,6 @@ class DropdownLayout extends React.PureComponent {
       <div
         {...this._getItemDataAttr({ ...optionState, overrideStyle })}
         className={st(classes.option, {
-          ...optionState,
           selected: optionState.selected && selectedHighlight,
           itemHeight,
           overrideStyle,
@@ -453,9 +464,7 @@ class DropdownLayout extends React.PureComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={`dropdown-item-${id}`}
       >
-        {typeof builderOption.value === 'function'
-          ? builderOption.value(optionState)
-          : builderOption.value}
+        {builderOption.value(optionState)}
       </div>
     );
   }

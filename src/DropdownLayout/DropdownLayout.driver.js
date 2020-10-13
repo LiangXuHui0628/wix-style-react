@@ -50,7 +50,7 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       ),
     clickAtOptionWithValue: value => {
       const option = values(optionElements.childNodes).find(
-        _option => _option.innerHTML === value,
+        _option => _option.textContent === value,
       );
       option && ReactTestUtils.Simulate.click(option);
     },

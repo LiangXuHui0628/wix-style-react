@@ -12,6 +12,8 @@ import {
   OPTION_DATA_HOOKS,
 } from './DataAttr';
 
+import { listItemSelectDriverFactory } from '../ListItemSelect/ListItemSelect.uni.driver';
+
 export const dropdownLayoutDriverFactory = base => {
   const reactBase = ReactBase(base);
   const contentContainer = () => findByHook(base, DATA_HOOKS.CONTENT_CONTAINER);
@@ -77,7 +79,8 @@ export const dropdownLayoutDriverFactory = base => {
      */
     clickAtOptionWithValue: async value => {
       for (const _option of await options()) {
-        if ((await _option._prop('innerHTML')) === value) {
+        const selectableOption = listItemSelectDriverFactory(_option);
+        if ((await selectableOption.getTitle()) === value) {
           return _option.click();
         }
       }
