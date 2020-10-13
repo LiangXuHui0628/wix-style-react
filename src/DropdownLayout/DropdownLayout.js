@@ -436,9 +436,7 @@ class DropdownLayout extends React.PureComponent {
   };
 
   _renderOptionContent({ builderOption, idx }) {
-    const { itemHeight, selectedHighlight } = this.props;
     const { selectedId, hovered } = this.state;
-
     const { id, disabled } = builderOption;
 
     const optionState = {
