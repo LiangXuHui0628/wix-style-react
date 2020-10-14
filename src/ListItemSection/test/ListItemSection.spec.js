@@ -37,6 +37,18 @@ describe('ListItemSection', () => {
     expect(await driver.getSuffix().exists()).toBe(true);
   });
 
+  it('should render the provided `suffix` node', async () => {
+    const suffixNode = <div data-hook="suffix">Suffix</div>;
+    const { driver } = render(
+      renderListItemSection({
+        title: 'ListItemSection title',
+        suffix: suffixNode,
+      }),
+    );
+
+    expect(await driver.childExists('[data-hook="suffix"]')).toBe(true);
+  });
+
   it('should call onClick when clicking suffix', async () => {
     const onClick = jest.fn();
     const { driver } = render(
