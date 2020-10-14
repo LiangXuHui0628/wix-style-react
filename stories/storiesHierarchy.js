@@ -27,5 +27,5 @@ export const Category = {
   INTERNAL: 'Components API|Internal',
   DEPRECATED: 'Deprecated',
   EDITOR_X_THEME: 'Themes|EditorX',
-  BUSINESS_DASHBOARD_THERE: 'Themes|BusinessDashboard',
+  BUSINESS_DASHBOARD_THERE: 'Themes|Business Dashboard',
 };

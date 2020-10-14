@@ -9,14 +9,16 @@ import {
   divider,
   example as baseExample,
 } from 'wix-storybook-utils/Sections';
-
+import LinkTo from '@storybook/addon-links/react';
 import { storySettings } from './storySettings';
 import { businessDashboardComponents } from '../../../../stories/utils/allComponents';
 import SectionHelper from '../../../SectionHelper';
-
 import * as carousel from './components/Carousel';
 import * as buttons from './components/Button';
 import * as circularProgressBar from './components/CircularProgressBar';
+import { Category } from '../../../../stories/storiesHierarchy';
+import Box from '../../../Box';
+import Text from '../../../Text';
 
 const example = config =>
   baseExample({ components: businessDashboardComponents, ...config });
@@ -62,23 +64,17 @@ import { theme } from 'wix-style-react/themes/businessDashboard';
 );
           `),
           divider(),
-          title('Examples'),
+          title('Playground'),
           example({
-            title:
-              '<a href="/?path=/story/components-api-components--button">Button</a>',
-            text: 'Example of buttons component',
+            text: TextComponent('Button'),
             source: buttons.playground,
           }),
           example({
-            title:
-              '<a href="/?path=/story/components-api-components--carousel">Carousel</a>',
-            text: 'Example of Carousel component',
+            text: TextComponent('Carousel'),
             source: carousel.playground,
           }),
           example({
-            title:
-              '<a href="/?path=/story/components-api-components--circularprogressbar">CircularProgressBar</a>',
-            text: 'Example of CircularProgressBar component',
+            text: TextComponent('CircularProgressBar'),
             source: circularProgressBar.playground,
           }),
         ],
@@ -86,3 +82,18 @@ import { theme } from 'wix-style-react/themes/businessDashboard';
     ]),
   ],
 };
+
+export function TextComponent(componentName) {
+  return (
+    <Box direction="horizontal" verticalAlign="middle" breakInside>
+      <Box marginRight="SP1">
+        <Text>Based&nbsp;on</Text>
+      </Box>
+      <Box marginRight="SP1">
+        <LinkTo kind={Category.COMPONENTS} story={componentName}>
+          {componentName}
+        </LinkTo>
+      </Box>
+    </Box>
+  );
+}

@@ -1,0 +1,13 @@
+@st-global-custom-property --wsr-font-family, --wsr-font-weight-bold;
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: text-medium-bold;
+}
+
+/* Typography */
+.T06 {
+  --wsr-font-family: Madefor;
+  --wsr-font-weight-bold: 700;
+  -st-mixin: text-medium-bold();
+}

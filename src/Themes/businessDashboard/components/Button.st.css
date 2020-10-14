@@ -5,20 +5,25 @@
 
 :import {
   -st-from: "../foundations/colors.st.css";
-  -st-named: BLUE;
+  -st-named: B10, B05;
 }
 
 .root {
   -st-extends: Button;
-  padding: 0 6px 0 6px;
+  padding: 0 SP5 0 6px;
   border-radius: 16px;
 }
 
 .root:priority(primary):size(small) {
-  background-color: value(BLUE);
+  background-color: value(B10);
   font-size: 12px;
   height: 28px;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 14px;
-  border-color: value(BLUE);
+  border-color: value(B10);
 }
+
+.root:priority(primary):hover {
+  background-color: value(B05);
+}
+
