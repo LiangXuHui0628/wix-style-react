@@ -12,6 +12,7 @@ export interface ThemeInterface {
       HeloButton?: React.FC,
     }
   },
+  componentWrapper?: ({children}: {children: React.ReactNode}) => React.ReactNode;
   color00?: React.CSSProperties['color'];
   color05?: React.CSSProperties['color'];
   color10?: React.CSSProperties['color'];

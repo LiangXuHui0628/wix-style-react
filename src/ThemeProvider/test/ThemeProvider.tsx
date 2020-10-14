@@ -13,6 +13,7 @@ function themeProviderWithAllProps() {
       dataHook="dataHook"
       theme={{
         className: 'some-class',
+        componentWrapper: ({children}) => <div>{children}</div>,
         icons:{
           CloseButton: {
             small: Close,

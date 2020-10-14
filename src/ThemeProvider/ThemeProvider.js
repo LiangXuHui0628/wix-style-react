@@ -8,7 +8,11 @@ class ThemeProvider extends React.PureComponent {
   _parseTheme(theme) {
     const style = {};
     for (const [key, value] of Object.entries(theme)) {
-      if (key !== 'className' && key !== 'icons') {
+      if (
+        key !== 'className' &&
+        key !== 'icons' &&
+        key !== 'componentWrapper'
+      ) {
         style[`--wsr-${kebabCase(key)}`] = value;
       }
     }
@@ -25,7 +29,9 @@ class ThemeProvider extends React.PureComponent {
         data-hook={dataHook}
       >
         <ThemeContext.Provider value={{ icons: theme.icons }}>
-          {children}
+          {theme.componentWrapper
+            ? theme.componentWrapper({ children })
+            : children}
         </ThemeContext.Provider>
       </div>
     );
@@ -42,6 +48,7 @@ ThemeProvider.propTypes = {
   theme: PropTypes.shape({
     className: PropTypes.string, // Applies a main class on the root element, useful when theming with the stylable approach
     icons: PropTypes.object, // an object of icons mapping per component
+    componentWrapper: PropTypes.func, // a function that returns a component to be placed between the theme and the children
     color00: PropTypes.string,
     color05: PropTypes.string,
     color10: PropTypes.string,
