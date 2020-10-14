@@ -55,10 +55,10 @@ export default {
 
           importExample(`
 import { ThemeProvider } from 'wix-style-react';
-import { theme } from 'wix-style-react/themes/businessDashboard';
+import { businessDashboardTheme } from 'wix-style-react/themes/businessDashboard';
 
 () => (
-  <ThemeProvider theme={theme({ active: true })}>
+  <ThemeProvider theme={businessDashboardTheme({ active: true })}>
     ...
   </ThemeProvider>
 );

@@ -1,5 +1,5 @@
 export const playground = `
-<ThemeProvider theme={theme({ active: true })}>
+<ThemeProvider theme={businessDashboardTheme({ active: true })}>
   <Carousel>
     <Card>
       <Card.Content>

@@ -1,1 +1,1 @@
-export { default as theme } from './BusinessDashboard';
+export { default as businessDashboardTheme } from './BusinessDashboard';
