@@ -16,5 +16,12 @@ export const listItemSectionDriverFactory = base => {
      * @return {BaseUniDriver<any>}
      */
     getSuffix: () => findByHook(base, dataHooks.SUFFIX),
+
+    /**
+     * Checks whether a node with the provided predicate exist
+     * @param {string} predicate - a predicate for the child node
+     * @returns {Promise<boolean>}
+     */
+    childExists: async predicate => base.$(predicate).exists(),
   };
 };

@@ -10,9 +10,7 @@ describe('ListItemSection', () => {
     listItemSectionPrivateDriverFactory,
   );
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 
   it('should render', async () => {
     const { driver } = render(renderListItemSection());

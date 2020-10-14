@@ -6,6 +6,7 @@ import Divider from '../Divider';
 import Text from '../Text';
 import TextButton from '../TextButton';
 import { dataHooks } from './constants';
+import { isString } from '../utils/StringUtils';
 
 export const TYPES = {
   WHITESPACE: 'whitespace',
@@ -36,7 +37,7 @@ class ListItemSection extends React.PureComponent {
     /** Text of the list item */
     title: PropTypes.string,
 
-    /** TextButton suffix */
+    /** Suffix node. Renders TextButton for a string otherwise the node itself.*/
     suffix: PropTypes.node,
 
     /** If true, long text won't break into more than one line and will be terminated with an ellipsis */
@@ -110,7 +111,7 @@ class ListItemSection extends React.PureComponent {
         </Text>
 
         {/* Suffix */}
-        {suffix && (
+        {isString(suffix) ? (
           <TextButton
             onClick={onClick}
             className={st(classes.suffix, { ellipsis })}
@@ -119,6 +120,8 @@ class ListItemSection extends React.PureComponent {
           >
             {suffix}
           </TextButton>
+        ) : (
+          suffix
         )}
       </div>
     );
