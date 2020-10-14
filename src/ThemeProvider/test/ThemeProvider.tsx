@@ -4,7 +4,6 @@ import { theme } from '../../Themes/floatingPanels';
 import Close from 'wix-ui-icons-common/system/Close';
 import AddItemMedium from "wix-ui-icons-common/system/AddItemMedium";
 
-
 function themeProviderWithMandatoryProps() {
   return <ThemeProvider />;
 }
