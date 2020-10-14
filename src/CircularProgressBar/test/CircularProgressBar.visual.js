@@ -121,26 +121,38 @@ const interactiveTests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(
-      `CircularProgressBar${describe ? '/' + describe : ''}`,
-      module,
-    ).add(it, () => (
-      <div style={{ width: '40%' }}>
-        <CircularProgressBar dataHook={dataHook} {...props} />
-      </div>
-    ));
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}CircularProgressBar/${describe}`,
+        module,
+      ).add(it, () =>
+        testWithTheme(
+          <div style={{ width: '40%' }}>
+            <CircularProgressBar dataHook={dataHook} {...props} />
+          </div>,
+        ),
+      );
+    });
   });
-});
 
-interactiveTests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props, componentDidMount }) => {
-    storiesOf(
-      `CircularProgressBar${describe ? '/' + describe : ''}`,
-      module,
-    ).add(it, () => (
-      <InteractiveEyeTest {...props} componentDidMount={componentDidMount} />
-    ));
+  interactiveTests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props, componentDidMount }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}CircularProgressBar/${describe}`,
+        module,
+      ).add(it, () =>
+        testWithTheme(
+          <InteractiveEyeTest
+            {...props}
+            componentDidMount={componentDidMount}
+          />,
+        ),
+      );
+    });
   });
-});
+};
+runTests();

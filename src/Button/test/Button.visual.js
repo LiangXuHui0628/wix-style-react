@@ -36,39 +36,49 @@ const blockOfTests = [
   },
 ];
 
-visualize('Button', () => {
-  blockOfTests.forEach(({ it, render }) => {
-    snap(it, render);
-  });
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(`${themeName ? `${themeName}|` : ''}Button`, () => {
+    blockOfTests.forEach(({ it, render }) => {
+      snap(it, render);
+    });
 
-  story('Size and Affix', () => {
-    snap('Size and Affix', () => (
-      <Box direction="vertical">
-        {sizes.map(size => (
-          <Box margin={1}>
-            <Button {...defaultProps} size={size} />
-            <Box marginLeft={1}>
-              <Button
-                {...defaultProps}
-                size={size}
-                suffixIcon={<AddChannel />}
-                prefixIcon={<AddChannel />}
-              />
-            </Box>
-          </Box>
-        ))}
-      </Box>
-    ));
-  });
+    story('Size and Affix', () => {
+      snap('Size and Affix', () =>
+        testWithTheme(
+          <Box direction="vertical">
+            {sizes.map(size => (
+              <Box margin={1} key={size}>
+                <Button {...defaultProps} size={size} />
+                <Box marginLeft={1}>
+                  <Button
+                    {...defaultProps}
+                    size={size}
+                    suffixIcon={<AddChannel />}
+                    prefixIcon={<AddChannel />}
+                  />
+                </Box>
+              </Box>
+            ))}
+          </Box>,
+        ),
+      );
+    });
 
-  story('Ellipsis', () => {
-    snap('Ellipsis', () => (
-      <Box width="300px">
-        <Button ellipsis>
-          This is a very very very very long text that will be cropped by
-          ellipsis at some point
-        </Button>
-      </Box>
-    ));
+    story('Ellipsis', () => {
+      snap('Ellipsis', () =>
+        testWithTheme(
+          <Box width="300px">
+            <Button ellipsis>
+              This is a very very very very long text that will be cropped by
+              ellipsis at some point
+            </Button>
+          </Box>,
+        ),
+      );
+    });
   });
-});
+};
+
+runTests();
