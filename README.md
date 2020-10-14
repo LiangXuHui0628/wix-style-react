@@ -38,6 +38,9 @@ yarn add wix-style-react
 wix-style-react is built with [Stylable](https://stylable.io/), therefore we recommend you build your project using a **Stylable compatible** template in order to save some configurations.
 Take a look at our usage guide [Create Stylable App](https://github.com/wix/wix-style-react/blob/master/docs/usage/usage-with-create-stylable-app.md) to create a new Stylable project from a boilerplate.
 
+#### Requirements
+wix-style-react requires react version `16.13.1` and up.
+
 #### How to load wix-style-react compatible fonts:
 
 Load Wix fonts from CDN:<br/>
