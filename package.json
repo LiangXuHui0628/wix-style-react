@@ -192,8 +192,8 @@
     "yoshi-style-dependencies": "4.71.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
