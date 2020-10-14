@@ -23,6 +23,12 @@ const tests = [
         },
       },
       {
+        it: 'text with suffix node',
+        props: {
+          suffix: <span style={{ color: 'red' }}>suffix node</span>,
+        },
+      },
+      {
         it: 'subheader',
         props: {
           type: 'subheader',
@@ -33,6 +39,13 @@ const tests = [
         props: {
           type: 'subheader',
           suffix: 'I am a suffix',
+        },
+      },
+      {
+        it: 'subheader with suffix node',
+        props: {
+          type: 'subheader',
+          suffix: <span style={{ color: 'red' }}>suffix node</span>,
         },
       },
       {
