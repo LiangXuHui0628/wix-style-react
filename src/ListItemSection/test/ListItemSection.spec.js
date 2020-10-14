@@ -25,43 +25,71 @@ describe('ListItemSection', () => {
     expect(await driver.getSuffix().exists()).toBe(false);
   });
 
-  it('should have elements: title, suffix', async () => {
+  it('should render title when provided', async () => {
     const { driver } = render(
       renderListItemSection({
         title: 'ListItemSection title',
-        suffix: 'suffix',
       }),
     );
 
     expect(await driver.getTitle()).toBe('ListItemSection title');
-    expect(await driver.getSuffix().exists()).toBe(true);
   });
 
-  it('should render the provided `suffix` node', async () => {
-    const suffixNode = <div data-hook="suffix">Suffix</div>;
-    const { driver } = render(
-      renderListItemSection({
-        title: 'ListItemSection title',
-        suffix: suffixNode,
-      }),
-    );
+  describe('suffix', () => {
+    it('should render suffix when provided', async () => {
+      const { driver } = render(
+        renderListItemSection({
+          title: 'ListItemSection title',
+          suffix: 'suffix',
+        }),
+      );
 
-    expect(await driver.childExists('[data-hook="suffix"]')).toBe(true);
-  });
+      expect(await driver.getSuffix().exists()).toBe(true);
+    });
 
-  it('should call onClick when clicking suffix', async () => {
-    const onClick = jest.fn();
-    const { driver } = render(
-      renderListItemSection({
-        title: 'ListItemSection title',
-        suffix: 'suffix',
-        onClick,
-      }),
-    );
+    it('should render provided `suffix` node', async () => {
+      const suffixNode = <div data-hook="suffix">Suffix</div>;
+      const { driver } = render(
+        renderListItemSection({
+          title: 'ListItemSection title',
+          suffix: suffixNode,
+        }),
+      );
 
-    expect(onClick).not.toBeCalled();
-    await driver.getSuffix().click();
-    expect(onClick).toBeCalled();
+      expect(await driver.getSuffix().exists()).toBe(true);
+      expect(await driver.childExists('[data-hook="suffix"]')).toBe(true);
+    });
+
+    it('should call onClick when clicking suffix text button', async () => {
+      const onClick = jest.fn();
+      const { driver } = render(
+        renderListItemSection({
+          title: 'ListItemSection title',
+          suffix: 'suffix',
+          onClick,
+        }),
+      );
+
+      expect(onClick).not.toBeCalled();
+      await driver.getSuffix().click();
+      expect(onClick).toBeCalled();
+    });
+
+    it('should call onClick when clicking suffix node', async () => {
+      const onClick = jest.fn();
+      const suffixNode = <div data-hook="suffix">Suffix</div>;
+      const { driver } = render(
+        renderListItemSection({
+          title: 'ListItemSection title',
+          suffix: suffixNode,
+          onClick,
+        }),
+      );
+
+      expect(onClick).not.toBeCalled();
+      await driver.getSuffix().click();
+      expect(onClick).toBeCalled();
+    });
   });
 
   it('should not call onClick when clicking elsewhere', async () => {

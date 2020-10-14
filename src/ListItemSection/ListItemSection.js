@@ -78,16 +78,32 @@ class ListItemSection extends React.PureComponent {
     );
   };
 
+  _renderSuffix = () => {
+    const { suffix, onClick, ellipsis } = this.props;
+
+    return isString(suffix) ? (
+      <TextButton
+        ellipsis={ellipsis}
+        onClick={onClick}
+        className={classes.suffix}
+        dataHook={dataHooks.SUFFIX}
+        size="tiny"
+      >
+        {suffix}
+      </TextButton>
+    ) : (
+      <div
+        data-hook={dataHooks.SUFFIX}
+        className={classes.suffix}
+        onClick={onClick}
+      >
+        {suffix}
+      </div>
+    );
+  };
+
   _renderTitle = () => {
-    const {
-      dataHook,
-      className,
-      type,
-      title,
-      suffix,
-      ellipsis,
-      onClick,
-    } = this.props;
+    const { dataHook, className, type, title, suffix, ellipsis } = this.props;
 
     return (
       <div
@@ -111,21 +127,7 @@ class ListItemSection extends React.PureComponent {
         </Text>
 
         {/* Suffix */}
-        {isString(suffix) ? (
-          <TextButton
-            ellipsis
-            onClick={onClick}
-            className={classes.suffix}
-            dataHook={dataHooks.SUFFIX}
-            size="tiny"
-          >
-            {suffix}
-          </TextButton>
-        ) : (
-          <div className={classes.suffix} onClick={onClick}>
-            {suffix}
-          </div>
-        )}
+        {suffix && this._renderSuffix()}
       </div>
     );
   };
