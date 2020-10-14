@@ -2,14 +2,14 @@ import React from 'react';
 import businessDashboardTheme from '../BusinessDashboard';
 import { buttonTests as ButtonTests } from '../../../Button/test/Button.visual';
 import { circularProgressBarTests as CircularProgressBarTests } from '../../../CircularProgressBar/test/CircularProgressBar.visual';
-import BusinessDashboardThemeProvider from '.';
+import { ThemeProvider } from '../../..';
 
 const themeName = 'BusinessDashboard';
 const testWithTheme = test => {
   return (
-    <BusinessDashboardThemeProvider theme={businessDashboardTheme()}>
+    <ThemeProvider theme={businessDashboardTheme()}>
       <>{test}</>
-    </BusinessDashboardThemeProvider>
+    </ThemeProvider>
   );
 };
 
