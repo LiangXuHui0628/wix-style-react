@@ -113,15 +113,18 @@ class ListItemSection extends React.PureComponent {
         {/* Suffix */}
         {isString(suffix) ? (
           <TextButton
+            ellipsis
             onClick={onClick}
-            className={st(classes.suffix, { ellipsis })}
+            className={classes.suffix}
             dataHook={dataHooks.SUFFIX}
             size="tiny"
           >
             {suffix}
           </TextButton>
         ) : (
-          suffix
+          <div className={classes.suffix} onClick={onClick}>
+            {suffix}
+          </div>
         )}
       </div>
     );
