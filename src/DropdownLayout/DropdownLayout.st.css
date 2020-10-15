@@ -4,6 +4,11 @@
 }
 
 :import {
+  -st-from: "../Foundation/stylable/typography.st.css";
+  -st-named: text-medium-normal;
+}
+
+:import {
   -st-from: "../Foundation/stylable/mixins/calc.js";
   -st-default: calc;
 }
@@ -114,6 +119,7 @@
   display: flex;
   align-items: center;
 }
+
 :global(.rtl) .option, :global([dir='rtl']) .option{
   text-align: right;
   direction: rtl;
