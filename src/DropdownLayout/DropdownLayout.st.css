@@ -101,6 +101,48 @@
   overflow: auto;
 }
 
+.option {
+  -st-states: selected, hovered, disabled;
+  -st-mixin: text-medium-normal;
+  color: value(D10);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+:global(.rtl) .option, :global([dir='rtl']) .option{
+  text-align: right;
+  direction: rtl;
+}
+
+.option:disabled {
+  color: value(D50);
+  cursor: default;
+}
+
+.option:hovered {
+  background: value(THEME-COLOR-50);
+  color: value(D10);
+}
+
+.option:selected {
+  background-color: value(THEME-COLOR-10);
+  color: value(D80);
+}
+
+.option:selected:hovered {
+  background-color: value(THEME-COLOR-20);
+  color: value(D80);
+}
+
+.option:focus {
+  outline: none;
+}
+
 .arrow {
   position: absolute;
   left: 50%;

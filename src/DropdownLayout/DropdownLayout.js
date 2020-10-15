@@ -450,6 +450,7 @@ class DropdownLayout extends React.PureComponent {
     return (
       <div
         {...this._getItemDataAttr({ ...optionState })}
+        className={st(classes.option, { ...optionState })}
         ref={node => this._setSelectedOptionNode(node, builderOption)}
         onClick={!disabled ? e => this._onSelect(idx, e) : null}
         key={idx}
