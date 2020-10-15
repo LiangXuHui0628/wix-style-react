@@ -64,7 +64,10 @@ export const dropdownLayoutDriverFactory = base => {
      * @param {number} option index
      * @return {Promise<void>}
      */
-    clickAtOption: async index => (await optionElementAt(index)).click(),
+    clickAtOption: async index => {
+      const optionDriver = await getOptionDriver(index);
+      return optionDriver.click();
+    },
 
     /** Clicks on an option with a specific dataHook
      * @param {string} dataHook
@@ -147,9 +150,10 @@ export const dropdownLayoutDriverFactory = base => {
     isShown: async () => !!(await (await contentContainer()).attr(DATA_SHOWN)),
     mouseEnter: () => base.hover(),
     mouseEnterAtOption: position =>
-      doIfOptionExists(position, async () =>
-        (await optionElementAt(position)).hover(),
-      ),
+      doIfOptionExists(position, async () => {
+        const optionDriver = await getOptionDriver(position);
+        return optionDriver.mouseEnter();
+      }),
     mouseLeave: () => reactBase.mouseLeave(),
     /** @deprecated deprecated prop */
     mouseClickOutside: () => ReactBase.clickBody(),

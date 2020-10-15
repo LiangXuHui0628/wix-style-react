@@ -224,8 +224,7 @@ const interactiveTests = [
         },
         componentDidMount: async () => {
           const driver = createDriver();
-          const optionsDrivers = await driver.options();
-          await optionsDrivers[0].mouseEnter();
+          await driver.mouseEnterAtOption(0);
         },
       },
       {
@@ -239,16 +238,7 @@ const interactiveTests = [
         },
         componentDidMount: async () => {
           const driver = createDriver();
-          const optionsDrivers = await driver.options();
-          await optionsDrivers[0].click();
-        },
-      },
-      {
-        it: 'option on click',
-        props: {},
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.clickAtOption(1);
+          await driver.clickAtOption(0);
         },
       },
       {
@@ -256,7 +246,15 @@ const interactiveTests = [
         props: {},
         componentDidMount: async () => {
           const driver = createDriver();
-          await driver.mouseEnterAtOption(1);
+          await driver.mouseEnterAtOption(0);
+        },
+      },
+      {
+        it: 'option on click',
+        props: {},
+        componentDidMount: async () => {
+          const driver = createDriver();
+          await driver.clickAtOption(0);
         },
       },
     ],
