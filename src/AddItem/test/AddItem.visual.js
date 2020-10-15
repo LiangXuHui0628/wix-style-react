@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AddItem from '../index';
 import { Cell, Layout } from '../../Layout';
+import Box from '../../Box';
 
 const defaultProps = {
   label: 'String',
@@ -110,6 +111,29 @@ const tests = [
       {
         it: 'removePadding true',
         props: { removePadding: true },
+      },
+    ],
+  },
+  {
+    describe: 'children',
+    its: [
+      {
+        it: 'as a string',
+        props: { children: 'AddItem' },
+      },
+      {
+        it: 'as a node',
+        props: { children: <Box marginLeft="SP1">A node with marginLeft</Box> },
+      },
+      {
+        it: 'as a render function',
+        props: {
+          children: () => (
+            <div style={{ fontSize: '20px', color: 'blue' }}>
+              Text styles should not be applied!
+            </div>
+          ),
+        },
       },
     ],
   },

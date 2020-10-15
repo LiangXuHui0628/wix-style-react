@@ -20,7 +20,7 @@ import { st, classes } from './AddItem.st.css';
 class AddItem extends Component {
   static displayName = 'AddItem';
   static propTypes = {
-    /** any renderable node or a render function */
+    /** any renderable node or a render function. In case of a render function, text styles will not be applied. */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
     /** apply disabled styles */
