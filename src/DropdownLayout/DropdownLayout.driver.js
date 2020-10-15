@@ -45,9 +45,10 @@ const dropdownLayoutDriverFactory = ({ element }) => {
   return {
     classes: () => optionElementsContainer.className,
     clickAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.click(optionElementAt(position)),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.click();
+      }),
     clickAtOptionWithValue: value => {
       const option = values(optionElements.childNodes).find(
         _option => _option.textContent === value,
@@ -106,9 +107,10 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       ),
     mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
     mouseEnterAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseEnter(optionElementAt(position)),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.mouseEnter();
+      }),
     mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
     mouseLeaveAtOption: position =>
       doIfOptionExists(position, () =>
