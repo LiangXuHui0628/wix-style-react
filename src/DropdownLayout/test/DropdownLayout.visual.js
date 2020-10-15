@@ -161,6 +161,7 @@ const tests = [
           ],
         },
       },
+      /* backwards compatibility */
       {
         it: 'overrideStyle',
         props: {
@@ -170,6 +171,13 @@ const tests = [
               id: 2,
               value: <div style={{ color: 'red' }}>Option 2</div>,
               overrideStyle: true,
+            },
+            { id: 3, value: 'Option 1', overrideStyle: true, disabled: true },
+            {
+              id: 4,
+              value: <div style={{ color: 'red' }}>Option 2</div>,
+              overrideStyle: true,
+              disabled: true,
             },
           ],
         },
