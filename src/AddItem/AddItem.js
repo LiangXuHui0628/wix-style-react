@@ -76,13 +76,7 @@ class AddItem extends Component {
     return (
       <ThemeProviderConsumerBackwardCompatible
         defaultIcons={{
-          AddItemButton: {
-            tiny: () => <Add width="26" height="26" />,
-            small: AddItemSmall,
-            medium: AddItemMedium,
-            large: AddItemLarge,
-            image: () => <AddMedia width="31" height="31" />,
-          },
+          AddItemButton: AddItemButtonIcons
         }}
       >
         {({ icons }) => {
