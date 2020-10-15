@@ -23,6 +23,14 @@
   margin-top: 0px;
 }
 
+.root::progressBar:success::progressIndicator {
+  display: none;
+}
+
+.root::progressBar:error::progressIndicator {
+  display: none;
+}
+
 .root::progressBar:size(small)::progressIndicator {
   font-size: 12px;
   top: calc(50% - 6px);

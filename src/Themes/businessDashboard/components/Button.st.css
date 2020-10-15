@@ -8,22 +8,23 @@
   -st-named: B10, B05;
 }
 
-.root {
-  -st-extends: Button;
-  padding: 0 SP5 0 6px;
-  border-radius: 16px;
+:import {
+  -st-from: "../../../Foundation/stylable/spacing.st.css";
+  -st-named: SP2;
 }
 
-.root:priority(primary):size(small) {
-  background-color: value(B10);
-  font-size: 12px;
-  height: 28px;
+.root {
+  -st-extends: Button;
+}
+
+.root:skin(standard):priority(primary):enabled {
   font-weight: 700;
-  line-height: 14px;
+  padding: 0 SP2 0 6px;
+  background-color: value(B10);
   border-color: value(B10);
 }
 
-.root:priority(primary):hover {
+.root:skin(standard):priority(primary):enabled:hover {
   background-color: value(B05);
 }
 

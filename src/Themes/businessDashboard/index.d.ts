@@ -4,4 +4,4 @@ export interface ThemeOptions {
   active?: boolean;
 }
 
-export function businessDashboardTheme(options?: ThemeOptions): ThemeInterface;
+export function theme(options?: ThemeOptions): ThemeInterface;

@@ -1,5 +1,5 @@
 export const playground = `
-<ThemeProvider theme={businessDashboardTheme({ active: true })}>
+<ThemeProvider theme={theme({ active: true })}>
   <Layout cols={2} gap="10px" justifyItems="center">
     <Cell>
     <CircularProgressBar showProgressIndication size="small" value={50} />
