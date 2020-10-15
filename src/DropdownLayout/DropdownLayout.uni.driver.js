@@ -51,10 +51,12 @@ export const dropdownLayoutDriverFactory = base => {
     }
     return onSuccess();
   };
+
   const getOptionDriver = position =>
     doIfOptionExists(position, async () =>
       createOptionDriver(await optionElementAt(position)),
     );
+
   return {
     ...baseUniDriverFactory(base),
     /** @deprecated should be private */
@@ -110,9 +112,8 @@ export const dropdownLayoutDriverFactory = base => {
 
     isOptionADivider: position =>
       doIfOptionExists(position, async () => {
-        const option = await optionElementAt(position);
-        const divider = await findByHook(option, OPTION_DATA_HOOKS.DIVIDER);
-        return divider.exists();
+        const optionDriver = await getOptionDriver(position);
+        return optionDriver.isDivider();
       }),
 
     isOptionExists: async optionText => {
