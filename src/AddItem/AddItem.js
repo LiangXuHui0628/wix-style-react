@@ -68,20 +68,6 @@ class AddItem extends Component {
     removePadding: false,
   };
 
-  _renderAddItemIcon(Icon, size, isImageIcon) {
-    let AddItemIcon;
-
-    if (isImageIcon) {
-      AddItemIcon = <Icon width="31" height="31" />;
-    } else if (size === SIZE.tiny) {
-      AddItemIcon = <Icon width="26" height="26" style={{ flexShrink: 0 }} />;
-    } else {
-      AddItemIcon = <Icon />;
-    }
-
-    return AddItemIcon;
-  }
-
   _renderIcon = () => {
     const { size, theme } = this.props;
 
@@ -91,21 +77,18 @@ class AddItem extends Component {
       <ThemeProviderConsumerBackwardCompatible
         defaultIcons={{
           AddItemButton: {
-            tiny: Add,
+            tiny: () => <Add width="26" height="26" />,
             small: AddItemSmall,
             medium: AddItemMedium,
             large: AddItemLarge,
-            image: AddMedia,
+            image: () => <AddMedia width="31" height="31" />,
           },
         }}
       >
-        {({ icons }) =>
-          this._renderAddItemIcon(
-            icons.AddItemButton[isImageIcon ? 'image' : size],
-            size,
-            isImageIcon,
-          )
-        }
+        {({ icons }) => {
+          const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
+          return <Icon />;
+        }}
       </ThemeProviderConsumerBackwardCompatible>
     );
   };
