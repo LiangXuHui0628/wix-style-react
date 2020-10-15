@@ -164,36 +164,32 @@ tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`DropdownLayout ${describe ? '/' + describe : ''}`, module).add(
       it,
-      () => {
-        debugger;
-
-        return (
-          <div style={{ margin: '160px 0' }}>
-            <div
-              className="first"
-              style={
-                props.inContainer
-                  ? containerStyles
-                  : { width: '240px', display: 'inline-block' }
-              }
-            >
-              <DropdownLayout {...commonProps} {...props} />
-            </div>
-            <div
-              className="second"
-              style={
-                props.inContainer
-                  ? containerStyles
-                  : { width: '240px', float: 'right', display: 'inline-block' }
-              }
-            >
-              <RTLWrapper rtl>
-                <DropdownLayout {...commonProps} {...props} />
-              </RTLWrapper>
-            </div>
+      () => (
+        <div style={{ margin: '160px 0' }}>
+          <div
+            className="first"
+            style={
+              props.inContainer
+                ? containerStyles
+                : { width: '240px', display: 'inline-block' }
+            }
+          >
+            <DropdownLayout {...commonProps} {...props} />
           </div>
-        );
-      },
+          <div
+            className="second"
+            style={
+              props.inContainer
+                ? containerStyles
+                : { width: '240px', float: 'right', display: 'inline-block' }
+            }
+          >
+            <RTLWrapper rtl>
+              <DropdownLayout {...commonProps} {...props} />
+            </RTLWrapper>
+          </div>
+        </div>
+      ),
     );
   });
 });
