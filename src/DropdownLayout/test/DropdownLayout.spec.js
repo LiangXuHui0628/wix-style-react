@@ -282,12 +282,17 @@ describe('DropdownLayout', () => {
     });
 
     it('should allow using custom render functions as options with the option state', async () => {
-      const customRenderFunction = id => ({
+      const customRenderFunction = ({ id, disabled }) => ({
+        disabled,
         value: jest.fn(),
         id,
       });
 
-      const options = [customRenderFunction(0), customRenderFunction(1)];
+      const options = [
+        customRenderFunction({ id: 0 }),
+        customRenderFunction({ id: 1 }),
+        customRenderFunction({ id: 2, disabled: true }),
+      ];
 
       const onSelect = jest.fn();
       const driver = createDriver(
@@ -307,6 +312,12 @@ describe('DropdownLayout', () => {
       expect(options[1].value).toHaveBeenCalledWith({
         selected: false,
         disabled: undefined,
+        hovered: false,
+      });
+
+      expect(options[2].value).toHaveBeenCalledWith({
+        selected: false,
+        disabled: true,
         hovered: false,
       });
     });
