@@ -18,11 +18,13 @@ import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 import { st, classes } from './AddItem.st.css';
 
 const AddItemButtonIcons = {
-  tiny: () => <Add width="26" height="26" />,
+  tiny: ({ className }) => <Add className={className} width="26" height="26" />,
   small: AddItemSmall,
   medium: AddItemMedium,
   large: AddItemLarge,
-  image: () => <AddMedia width="31" height="31" />,
+  image: ({ className }) => (
+    <AddMedia className={className} width="31" height="31" />
+  ),
 };
 
 class AddItem extends Component {
@@ -89,7 +91,7 @@ class AddItem extends Component {
       >
         {({ icons }) => {
           const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
-          return <Icon />;
+          return <Icon className={classes.icon} />;
         }}
       </ThemeProviderConsumerBackwardCompatible>
     );

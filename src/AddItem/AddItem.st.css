@@ -195,7 +195,7 @@
   flex-direction: row;
 }
 
-.content:size(tiny) svg {
+.content:size(tiny) .icon {
   flex-shrink: 0;
 }
 
