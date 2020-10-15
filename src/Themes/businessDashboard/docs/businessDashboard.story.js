@@ -54,14 +54,14 @@ export default {
           }),
 
           importExample(`
-import { ThemeProvider } from 'wix-style-react';
-import { theme } from 'wix-style-react/themes/businessDashboard';
+  import { ThemeProvider } from 'wix-style-react';
+  import { theme } from 'wix-style-react/themes/businessDashboard';
 
-() => (
-  <ThemeProvider theme={theme({ active: true })}>
-    ...
-  </ThemeProvider>
-);
+  () => (
+    <ThemeProvider theme={theme({ active: true })}>
+      ...
+    </ThemeProvider>
+  );
           `),
           divider(),
           title('Playground'),
