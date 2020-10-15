@@ -13,6 +13,15 @@ const commonProps = {
   visible: true,
 };
 
+const setColor = ({ selected, hovered, disabled }) =>
+  (selected && 'red') || (hovered && 'green') || (disabled && 'grey');
+
+const customBuilderFunction = ({ id, disabled }) => ({
+  id,
+  disabled,
+  value: props => <div style={{ color: setColor(props) }}>value</div>,
+});
+
 const fixedNodeStyles = {
   backgroundColor: 'red',
   padding: '10px',
@@ -128,6 +137,16 @@ const tests = [
           ],
         },
       },
+      {
+        it: 'custom',
+        props: {
+          options: [
+            customBuilderFunction({ id: 1 }),
+            customBuilderFunction({ id: 2, disabled: true }),
+            customBuilderFunction({ id: 3 }),
+          ],
+        },
+      },
     ],
   },
   {
@@ -145,32 +164,36 @@ tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`DropdownLayout ${describe ? '/' + describe : ''}`, module).add(
       it,
-      () => (
-        <div style={{ margin: '160px 0' }}>
-          <div
-            className="first"
-            style={
-              props.inContainer
-                ? containerStyles
-                : { width: '240px', display: 'inline-block' }
-            }
-          >
-            <DropdownLayout {...commonProps} {...props} />
-          </div>
-          <div
-            className="second"
-            style={
-              props.inContainer
-                ? containerStyles
-                : { width: '240px', float: 'right', display: 'inline-block' }
-            }
-          >
-            <RTLWrapper rtl>
+      () => {
+        debugger;
+
+        return (
+          <div style={{ margin: '160px 0' }}>
+            <div
+              className="first"
+              style={
+                props.inContainer
+                  ? containerStyles
+                  : { width: '240px', display: 'inline-block' }
+              }
+            >
               <DropdownLayout {...commonProps} {...props} />
-            </RTLWrapper>
+            </div>
+            <div
+              className="second"
+              style={
+                props.inContainer
+                  ? containerStyles
+                  : { width: '240px', float: 'right', display: 'inline-block' }
+              }
+            >
+              <RTLWrapper rtl>
+                <DropdownLayout {...commonProps} {...props} />
+              </RTLWrapper>
+            </div>
           </div>
-        </div>
-      ),
+        );
+      },
     );
   });
 });

@@ -119,6 +119,10 @@
   direction: rtl;
 }
 
+.option:focus {
+  outline: none;
+}
+
 .option:disabled {
   color: value(D50);
   cursor: default;
@@ -139,9 +143,7 @@
   color: value(D80);
 }
 
-.option:focus {
-  outline: none;
-}
+
 
 .arrow {
   position: absolute;
