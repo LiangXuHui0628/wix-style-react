@@ -32,7 +32,7 @@ class SectionHelper extends React.PureComponent {
         data-appearance={appearance}
         className={st(classes.root, {
           appearance,
-          withCloseBtn: showCloseButton,
+          withCloseBtn: showCloseButton && !!onClose,
           withTitle: !!title,
           fullWidth,
         })}
