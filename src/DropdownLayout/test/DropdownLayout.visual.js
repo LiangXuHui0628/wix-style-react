@@ -18,6 +18,15 @@ const createDriver = () =>
     dataHook,
   });
 
+const optionNodeStyle = { backgroundColor: 'pink' };
+
+const nodeOptions = [
+  { id: 0, value: <div style={optionNodeStyle}>Option 1</div> },
+  { id: 1, value: <div style={optionNodeStyle}>Option 2</div> },
+  { id: 2, value: <div style={optionNodeStyle}>Option 3</div> },
+  { id: 3, value: <div style={optionNodeStyle}>Option 4</div> },
+];
+
 const commonProps = {
   options: [
     { id: 0, value: 'Option 1' },
@@ -153,7 +162,7 @@ const tests = [
         },
       },
       {
-        it: 'custom',
+        it: 'custom builder',
         props: {
           options: [
             customBuilderFunction({ id: 1 }),
@@ -214,7 +223,7 @@ const interactiveTests = [
     describe: 'option',
     its: [
       {
-        it: 'custom on hover',
+        it: 'custom builder on hover',
         props: {
           options: [
             customBuilderFunction({ id: 1 }),
@@ -228,7 +237,7 @@ const interactiveTests = [
         },
       },
       {
-        it: 'custom on click',
+        it: 'custom builder on click',
         props: {
           options: [
             customBuilderFunction({ id: 1 }),
@@ -252,6 +261,26 @@ const interactiveTests = [
       {
         it: 'option on click',
         props: {},
+        componentDidMount: async () => {
+          const driver = createDriver();
+          await driver.clickAtOption(0);
+        },
+      },
+      {
+        it: 'option node on hover',
+        props: {
+          options: nodeOptions,
+        },
+        componentDidMount: async () => {
+          const driver = createDriver();
+          await driver.mouseEnterAtOption(0);
+        },
+      },
+      {
+        it: 'option node on click',
+        props: {
+          options: nodeOptions,
+        },
         componentDidMount: async () => {
           const driver = createDriver();
           await driver.clickAtOption(0);
