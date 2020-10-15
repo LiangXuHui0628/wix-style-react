@@ -224,8 +224,8 @@ const interactiveTests = [
         },
         componentDidMount: async () => {
           const driver = createDriver();
-          const options = await driver.options();
-          await options[0].mouseEnter();
+          const optionsDrivers = await driver.options();
+          await optionsDrivers[0].mouseEnter();
         },
       },
       {
@@ -239,8 +239,8 @@ const interactiveTests = [
         },
         componentDidMount: async () => {
           const driver = createDriver();
-          const options = await driver.options();
-          await options[0].click();
+          const optionsDrivers = await driver.options();
+          await optionsDrivers[0].click();
         },
       },
     ],
