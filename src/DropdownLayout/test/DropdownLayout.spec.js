@@ -281,7 +281,7 @@ describe('DropdownLayout', () => {
       });
     });
 
-    it('should allow using custom render functions as options with the option state', async () => {
+    it('should render a function option with the rendered item props', async () => {
       const customRenderFunction = ({ id, disabled }) => ({
         disabled,
         value: jest.fn(),
@@ -294,14 +294,9 @@ describe('DropdownLayout', () => {
         customRenderFunction({ id: 2, disabled: true }),
       ];
 
-      const onSelect = jest.fn();
-      const driver = createDriver(
-        <DropdownLayout visible options={options} onSelect={onSelect} />,
-      );
+      const driver = createDriver(<DropdownLayout visible options={options} />);
 
       await driver.clickAtOption(0);
-
-      expect(onSelect).toHaveBeenCalled();
 
       expect(options[0].value).toHaveBeenCalledWith({
         selected: true,
@@ -313,6 +308,14 @@ describe('DropdownLayout', () => {
         selected: false,
         disabled: undefined,
         hovered: false,
+      });
+
+      await driver.mouseEnterAtOption(1);
+
+      expect(options[1].value).toHaveBeenCalledWith({
+        selected: false,
+        disabled: undefined,
+        hovered: true,
       });
 
       expect(options[2].value).toHaveBeenCalledWith({
