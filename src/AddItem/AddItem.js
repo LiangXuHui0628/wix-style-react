@@ -12,10 +12,18 @@ import Add from 'wix-ui-icons-common/Add';
 import Tooltip from '../Tooltip';
 import Text from '../Text';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
-import { dataHooks, SIZE } from './constants';
+import { dataHooks } from './constants';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 
 import { st, classes } from './AddItem.st.css';
+
+const AddItemButtonIcons = {
+  tiny: () => <Add width="26" height="26" />,
+  small: AddItemSmall,
+  medium: AddItemMedium,
+  large: AddItemLarge,
+  image: () => <AddMedia width="31" height="31" />,
+};
 
 class AddItem extends Component {
   static displayName = 'AddItem';
@@ -76,7 +84,7 @@ class AddItem extends Component {
     return (
       <ThemeProviderConsumerBackwardCompatible
         defaultIcons={{
-          AddItemButton: AddItemButtonIcons
+          AddItemButton: AddItemButtonIcons,
         }}
       >
         {({ icons }) => {
