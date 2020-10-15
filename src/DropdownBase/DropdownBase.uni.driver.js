@@ -45,8 +45,8 @@ export const dropdownBaseDriverFactory = (base, body) => {
 
     optionContentAt: async id => {
       const dropdownLayoutDriver = await createDropdownLayoutDriver();
-      const options = await dropdownLayoutDriver.options();
-      return options[id].content();
+      const optionsDrivers = await dropdownLayoutDriver.options();
+      return optionsDrivers[id].content();
     },
 
     mouseEnter: () => testkit(base, body).mouseEnter(),

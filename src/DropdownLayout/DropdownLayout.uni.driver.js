@@ -241,7 +241,7 @@ const createOptionDriver = option => ({
       return selectableOption.getTitle();
     }
 
-    return option.text();
+    return findByHook(option, OPTION_DATA_HOOKS.SELECTABLE);
   },
   click: () => option.click(),
   isDivider: async () => {
