@@ -38,6 +38,7 @@ FontUpgrade.propTypes = {
   /** Sets the Madefor font upgrade active when true (which is by default) */
   active: PropTypes.bool,
 
+  /** render as some other component or DOM tag */
   as: PropTypes.oneOf(['span', 'div']),
 
   /** A renderable node */
