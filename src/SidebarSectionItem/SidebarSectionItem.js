@@ -85,11 +85,11 @@ class SidebarSectionItem extends React.PureComponent {
                 </span>
               )}
               <FontUpgradeContext.Consumer>
-                {context => (
+                {({ active }) => (
                   <Text
                     className={classes.text}
                     size="small"
-                    weight={context.active ? 'normal' : 'bold'}
+                    weight={active ? 'normal' : 'bold'}
                     secondary={skin === sidebarSkins.light}
                     light={skin === sidebarSkins.dark}
                     skin={disabled && 'disabled'}

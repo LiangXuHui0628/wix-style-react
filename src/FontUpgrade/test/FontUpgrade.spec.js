@@ -16,10 +16,8 @@ describe('FontUpgrade', () => {
       <FontUpgrade>
         <div id="wrapper">
           <FontUpgradeContext.Consumer>
-            {context => {
-              return (
-                <div data-active={context.active ? 'active' : null}>{text}</div>
-              );
+            {({ active }) => {
+              return <div data-active={active ? 'active' : null}>{text}</div>;
             }}
           </FontUpgradeContext.Consumer>
         </div>
@@ -37,10 +35,8 @@ describe('FontUpgrade', () => {
     const { driver } = render(
       <div id="wrapper">
         <FontUpgradeContext.Consumer>
-          {context => {
-            return (
-              <div data-active={context.active ? 'active' : null}>{text}</div>
-            );
+          {({ active }) => {
+            return <div data-active={active ? 'active' : null}>{text}</div>;
           }}
         </FontUpgradeContext.Consumer>
       </div>,

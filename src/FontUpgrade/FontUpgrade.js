@@ -1,6 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-import styles from './FontUpgrade.scss';
+import { st, classes } from './FontUpgrade.st.css';
 import PropTypes from 'prop-types';
 import { FontUpgradeContext } from './context';
 
@@ -9,13 +8,13 @@ class FontUpgrade extends React.PureComponent {
     const { dataHook, className, active, as, children } = this.props;
 
     return (
-      <FontUpgradeContext.Provider value={{ active, styles }}>
+      <FontUpgradeContext.Provider value={{ active }}>
         {React.createElement(
           as,
           {
             'data-hook': dataHook,
             'data-active': active,
-            className: classNames(active ? styles.root : null, className),
+            className: st(active ? classes.root : null, className),
           },
           children,
         )}

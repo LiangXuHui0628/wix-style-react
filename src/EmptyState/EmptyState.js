@@ -56,8 +56,8 @@ const EmptyState = ({
         >
           {theme === 'section' ? (
             <FontUpgradeContext.Consumer>
-              {context => (
-                <Text weight={context.active ? 'bold' : 'normal'}>{title}</Text>
+              {({ active }) => (
+                <Text weight={active ? 'bold' : 'normal'}>{title}</Text>
               )}
             </FontUpgradeContext.Consumer>
           ) : (

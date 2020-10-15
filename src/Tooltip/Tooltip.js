@@ -87,10 +87,10 @@ class Tooltip extends React.PureComponent {
     const textSize = size === 'small' ? 'tiny' : 'small';
     return (
       <FontUpgradeContext.Consumer>
-        {context => {
+        {({ active }) => {
           return (
             <div style={{ textAlign }}>
-              <FontUpgrade active={!!context.active}>
+              <FontUpgrade active={!!active}>
                 {typeof content === 'string' ? (
                   <RawText
                     dataHook={dataHooks.tooltipText}

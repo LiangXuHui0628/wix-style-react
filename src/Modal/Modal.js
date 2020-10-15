@@ -152,7 +152,7 @@ class Modal extends React.PureComponent {
     return (
       <div data-hook={dataHook}>
         <FontUpgradeContext.Consumer>
-          {context => {
+          {({ active }) => {
             return (
               <ReactModal
                 portalClassName={portalClassName}
@@ -166,7 +166,7 @@ class Modal extends React.PureComponent {
                 closeTimeoutMS={closeTimeoutMS}
                 parentSelector={parentSelector}
               >
-                <FontUpgrade active={!!context.active}>
+                <FontUpgrade active={!!active}>
                   {isOpen &&
                     shouldDisplayCloseButton &&
                     this.renderCloseButton()}

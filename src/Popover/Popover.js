@@ -26,9 +26,9 @@ const ANIMATION_EXIT = 100;
 const ContentElement = ({ children }) => {
   return (
     <FontUpgradeContext.Consumer>
-      {context => {
+      {({ active }) => {
         return (
-          <FontUpgrade active={!!context.active}>
+          <FontUpgrade active={!!active}>
             <CorePopover.Content children={children} />
           </FontUpgrade>
         );

@@ -51,12 +51,12 @@ class SectionHelper extends React.PureComponent {
         {title && (
           <div className={classes.title}>
             <FontUpgradeContext.Consumer>
-              {context => (
+              {({ active }) => (
                 <Text
                   light={isExperimentalDark}
                   dataHook="sectionhelper-title"
                   size="small"
-                  weight={context.active ? 'bold' : 'normal'}
+                  weight={active ? 'bold' : 'normal'}
                 >
                   {title}
                 </Text>

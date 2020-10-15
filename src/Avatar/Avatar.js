@@ -79,7 +79,7 @@ class Avatar extends React.PureComponent {
         className={classNames(className, classes.externalContainer)}
       >
         <FontUpgradeContext.Consumer>
-          {context => (
+          {({ active }) => (
             <div
               data-hook={dataHooks.avatarWSR}
               onMouseEnter={this._onMouseEnter}
@@ -94,7 +94,7 @@ class Avatar extends React.PureComponent {
                 fade: fadeIndication,
                 hasText: !!text,
               })}
-              data-madefor={context.active}
+              data-madefor={active}
             >
               <div className={classes.coreAvatar}>
                 <CoreAvatar

@@ -59,13 +59,13 @@ class Breadcrumbs extends React.PureComponent {
 
       return (
         <FontUpgradeContext.Consumer>
-          {context => (
+          {({ active }) => (
             <Text
               dataHook={DATA_HOOKS.BREADCRUMBS_ITEM}
               weight={isActive ? 'normal' : 'thin'}
               light={theme === THEMES.onDarkBackground}
               size={isSmallSize ? 'small' : 'medium'}
-              secondary={context.active && !isActive}
+              secondary={active && !isActive}
               ellipsis
             >
               {value}
