@@ -125,12 +125,12 @@ export const dropdownLayoutDriverFactory = base => {
       return false;
     },
     isOptionHovered: async index => {
-      const option = await optionElementAt(index);
-      return !!(await option.attr(DATA_OPTION.HOVERED));
+      const optionDriver = await getOptionDriver(index);
+      return optionDriver.isHovered();
     },
     isOptionSelected: async index => {
-      const option = await optionElementAt(index);
-      return !!(await option.attr(DATA_OPTION.SELECTED));
+      const optionDriver = await getOptionDriver(index);
+      return optionDriver.isSelected();
     },
     /** @deprecated */
     isOptionHeightSmall: position =>

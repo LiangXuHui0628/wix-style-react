@@ -343,6 +343,16 @@ describe('DropdownLayout', () => {
       expect(await driver.isOptionSelected(selectedId)).toBe(true);
     });
 
+    it('should select the chosen value when overrideStyle is true', async () => {
+      const selectedId = 0;
+      const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+      const driver = createDriver(
+        <DropdownLayout visible options={_options} selectedId={selectedId} />,
+      );
+
+      expect(await driver.isOptionSelected(0)).toBe(true);
+    });
+
     it('should select the chosen value when label is provided', async () => {
       const options = [{ id: 0, value: jest.fn(), label: 'Option Label' }];
       const onSelect = jest.fn();
@@ -661,6 +671,20 @@ describe('DropdownLayout', () => {
         expect(await option.isHovered()).toBe(true);
         await option.mouseLeave();
         expect(await option.isHovered()).toBe(false);
+      });
+
+      it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', async () => {
+        const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+
+        const driver = createDriver(
+          <DropdownLayout visible options={_options} />,
+        );
+
+        await driver.mouseEnterAtOption(0);
+        expect(await driver.isOptionHovered(0)).toBe(true);
+
+        await driver.mouseLeaveAtOption(0);
+        expect(await driver.isOptionHovered(0)).toBe(false);
       });
 
       it('should not hover divider or a disabled item when mouse enter', async () => {

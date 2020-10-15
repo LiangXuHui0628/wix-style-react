@@ -78,13 +78,15 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       ).length > 0,
     /** returns if an option is hovered. notice that it checks by index and __not__ by id */
     isOptionHovered: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.HOVERED),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isHovered();
+      }),
     isOptionSelected: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.SELECTED),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isSelected();
+      }),
     isOptionHeightSmall: position =>
       doIfOptionExists(
         position,
