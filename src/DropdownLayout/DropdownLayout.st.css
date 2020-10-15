@@ -149,6 +149,9 @@
   color: value(D80);
 }
 
+.overrideStyle {
+  padding: 0;
+}
 
 
 .arrow {

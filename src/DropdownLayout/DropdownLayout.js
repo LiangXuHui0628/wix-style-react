@@ -17,7 +17,7 @@ import deprecationLog from '../utils/deprecationLog';
 import { filterObject } from '../utils/filterObject';
 import ReactDOM from 'react-dom';
 import { listItemSectionBuilder } from '../ListItemSection';
-import { listItemSelectBuilder } from '../ListItemSelect';
+import ListItemSelect, { listItemSelectBuilder } from '../ListItemSelect';
 import { isString } from '../utils/StringUtils';
 
 const MOUSE_EVENTS_SUPPORTED = ['mouseup', 'touchend'];
@@ -158,7 +158,7 @@ class DropdownLayout extends React.PureComponent {
   }
 
   _patchOptionToBuilder({ option, idx }) {
-    const { value, id, title: isTitle, disabled } = option;
+    const { value, id, title: isTitle, disabled, overrideStyle } = option;
     const { selectedId } = this.state;
 
     if (value === DIVIDER_OPTION_VALUE) {
@@ -178,14 +178,30 @@ class DropdownLayout extends React.PureComponent {
       });
     }
 
+    // node or a string
     if (typeof value !== 'function') {
-      return listItemSelectBuilder({
-        dataHook: OPTION_DATA_HOOKS.SELECTABLE,
-        id,
-        title: value,
-        disabled,
-        selected: id === selectedId,
-      });
+      if (!overrideStyle) {
+        return listItemSelectBuilder({
+          dataHook: OPTION_DATA_HOOKS.SELECTABLE,
+          id,
+          title: value,
+          disabled,
+          selected: id === selectedId,
+        });
+      } else {
+        return {
+          id,
+          disabled,
+          value: props => (
+            <div
+              className={classes.overrideStyle}
+              data-hook={OPTION_DATA_HOOKS.SELECTABLE}
+            >
+              {value}
+            </div>
+          ),
+        };
+      }
     }
 
     // in case it's a render function
