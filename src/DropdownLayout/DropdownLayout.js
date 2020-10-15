@@ -193,12 +193,7 @@ class DropdownLayout extends React.PureComponent {
           id,
           disabled,
           value: props => (
-            <div
-              className={classes.overrideStyle}
-              data-hook={OPTION_DATA_HOOKS.SELECTABLE}
-            >
-              {value}
-            </div>
+            <div data-hook={OPTION_DATA_HOOKS.SELECTABLE}>{value}</div>
           ),
         };
       }

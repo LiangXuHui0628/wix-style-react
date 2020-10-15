@@ -149,11 +149,6 @@
   color: value(D80);
 }
 
-.overrideStyle {
-  padding: 0;
-}
-
-
 .arrow {
   position: absolute;
   left: 50%;
