@@ -13,8 +13,6 @@ export interface DropdownLayoutUniDriver extends BaseUniDriver {
   isOptionExists: (optionText: string) => Promise<boolean>;
   isOptionHovered: (index: number) => Promise<boolean>;
   isOptionSelected: (index: number) => Promise<boolean>;
-  isOptionSelectedWithGlobalClassName: (position: number) => Promise<boolean>;
-  isOptionHoveredWithGlobalClassName: (position: number) => Promise<boolean>;
   isOptionHeightSmall: (position: number) => Promise<boolean>;
   isOptionHeightBig: (position: number) => Promise<boolean>;
   isShown: () => Promise<boolean>;
@@ -56,8 +54,6 @@ export interface DropdownLayoutOptionUniDriver {
   mouseLeave: () => Promise<void>;
   isHovered: () => Promise<boolean>;
   isSelected: () => Promise<boolean>;
-  isHoveredWithGlobalClassName: () => Promise<boolean>;
-  isSelectedWithGlobalClassName: () => Promise<boolean>;
   content: () => Promise<string>;
   click: () => Promise<void>;
   isDivider: () => Promise<boolean>;

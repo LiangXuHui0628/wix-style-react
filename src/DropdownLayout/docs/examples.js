@@ -137,7 +137,6 @@ const customBuilderFunction = ({
 }) => ({
   id,
   disabled,
-  overrideStyle: true,
   value: props =>
    <Text
       weight="bold"

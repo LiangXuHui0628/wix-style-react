@@ -84,14 +84,6 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       doIfOptionExists(position, () =>
         optionElementAt(position).hasAttribute(DATA_OPTION.SELECTED),
       ),
-    isOptionHoveredWithGlobalClassName: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.HOVERED_GLOBAL),
-      ),
-    isOptionSelectedWithGlobalClassName: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.SELECTED_GLOBAL),
-      ),
     isOptionHeightSmall: position =>
       doIfOptionExists(
         position,

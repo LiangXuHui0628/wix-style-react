@@ -128,22 +128,6 @@ export const dropdownLayoutDriverFactory = base => {
       const option = await optionElementAt(index);
       return !!(await option.attr(DATA_OPTION.SELECTED));
     },
-    isOptionSelectedWithGlobalClassName: position =>
-      doIfOptionExists(
-        position,
-        async () =>
-          !!(await (await optionElementAt(position)).attr(
-            DATA_OPTION.SELECTED_GLOBAL,
-          )),
-      ),
-    isOptionHoveredWithGlobalClassName: position =>
-      doIfOptionExists(
-        position,
-        async () =>
-          !!(await (await optionElementAt(position)).attr(
-            DATA_OPTION.HOVERED_GLOBAL,
-          )),
-      ),
     /** @deprecated */
     isOptionHeightSmall: position =>
       doIfOptionExists(

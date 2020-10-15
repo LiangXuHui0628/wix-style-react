@@ -2,6 +2,21 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import DropdownLayout from '../DropdownLayout';
 import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
+import { storySettings } from './storySettings';
+import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
+import { dropdownLayoutDriverFactory } from '../DropdownLayout.uni.driver';
+
+const dropdownLayoutTestkitFactory = uniTestkitFactoryCreator(
+  dropdownLayoutDriverFactory,
+);
+
+const { dataHook } = storySettings;
+
+const createDriver = () =>
+  dropdownLayoutTestkitFactory({
+    wrapper: document.body,
+    dataHook,
+  });
 
 const commonProps = {
   options: [
@@ -191,5 +206,77 @@ tests.forEach(({ describe, its }) => {
         </div>
       ),
     );
+  });
+});
+
+const interactiveTests = [
+  {
+    describe: 'option',
+    its: [
+      {
+        it: 'custom on hover',
+        props: {
+          options: [
+            customBuilderFunction({ id: 1 }),
+            customBuilderFunction({ id: 2, disabled: true }),
+            customBuilderFunction({ id: 3 }),
+          ],
+        },
+        componentDidMount: async () => {
+          const driver = createDriver();
+          const options = await driver.options();
+          await options[0].mouseEnter();
+        },
+      },
+      {
+        it: 'custom on click',
+        props: {
+          options: [
+            customBuilderFunction({ id: 1 }),
+            customBuilderFunction({ id: 2, disabled: true }),
+            customBuilderFunction({ id: 3 }),
+          ],
+        },
+        componentDidMount: async () => {
+          const driver = createDriver();
+          const options = await driver.options();
+          await options[0].click();
+        },
+      },
+    ],
+  },
+];
+
+class InteractiveDropdownLayout extends React.Component {
+  async componentDidMount() {
+    this.props.componentDidMount();
+  }
+
+  render() {
+    return (
+      <div style={{ margin: '160px 0' }}>
+        <div style={{ width: '240px', display: 'inline-block' }}>
+          <DropdownLayout
+            dataHook={dataHook}
+            {...commonProps}
+            {...this.props}
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+interactiveTests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props, componentDidMount }) => {
+    storiesOf(
+      `DropdownLayout ${describe ? '/' + describe : ''}`,
+      module,
+    ).add(it, () => (
+      <InteractiveDropdownLayout
+        {...props}
+        componentDidMount={componentDidMount}
+      />
+    ));
   });
 });
